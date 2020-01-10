@@ -305,7 +305,7 @@ def parse_author_affiliation(medline):
     ----------
     medline: Element
         The lxml node pointing to a medline document
-    
+
     Returns
     -------
     authors: list
@@ -337,7 +337,7 @@ def parse_author_affiliation(medline):
                     affiliation = ''
                 authors.append({
                     'forename': forename,
-                    'firstname': firstname, 
+                    'firstname': firstname,
                     'lastname': lastname,
                     'affiliation': affiliation
                 })
@@ -472,7 +472,7 @@ def parse_article_info(pubmed_article, year_info_only, nlm_category, author_list
 
     authors_dict = parse_author_affiliation(medline)
     if not author_list:
-        affiliations = ';'.join([author.get('affiliation', '') 
+        affiliations = ';'.join([author.get('affiliation', '')
                                 for author in authors_dict if author.get('affiliation', '') is not ''])
         authors = ';'.join([author.get('firstname', '') + ' ' + author.get('lastname', '')
                             for author in authors_dict])
@@ -492,7 +492,7 @@ def parse_article_info(pubmed_article, year_info_only, nlm_category, author_list
     other_id_dict = parse_other_id(medline)
     journal_info_dict = parse_journal_info(medline)
     dict_out = {
-        'title': title,
+        'titl': title,
         'abstract': abstract,
         'journal': journal_name,
         'authors': authors,
@@ -513,7 +513,7 @@ def parse_article_info(pubmed_article, year_info_only, nlm_category, author_list
     return dict_out
 
 
-def parse_medline_xml(path, year_info_only=True, nlm_category=False, 
+def parse_medline_xml(path, year_info_only=True, nlm_category=False,
                       author_list=False, reference_list=False):
     """Parse XML file from Medline XML format available at
     ftp://ftp.nlm.nih.gov/nlmdata/.medleasebaseline/gz/
@@ -535,7 +535,7 @@ def parse_medline_xml(path, year_info_only=True, nlm_category=False,
         if True, this will parse structured abstract where each section if original Label
         if False, this will parse structured abstract where each section will be assigned to
         NLM category of each sections
-    author_list: bool, default False, 
+    author_list: bool, default False,
         if True, return parsed author output as a list of authors
         if False, return parsed author output as a string of authors concatenated with ;
     reference_list: bool, default False
@@ -568,7 +568,7 @@ def parse_medline_xml(path, year_info_only=True, nlm_category=False,
         'pmc': np.nan,
         'mesh_terms': np.nan,
         'keywords': np.nan,
-        'publication_types': np.nan, 
+        'publication_types': np.nan,
         'chemical_list': np.nan,
         'delete': True,
         'medline_ta': np.nan,
